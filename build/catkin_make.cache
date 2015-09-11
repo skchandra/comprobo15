@@ -1,0 +1,2 @@
+getting_familiar
+-DCATKIN_DEVEL_PREFIX=/home/kiki/comprobo15/devel -DCMAKE_INSTALL_PREFIX=/home/kiki/comprobo15/install -G Unix Makefiles

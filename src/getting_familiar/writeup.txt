@@ -1,0 +1,9 @@
+1. Rosbag would be a useful tool for debugging in order to see exactly where the robot performed something incorrectly. This is especially true in cases where the robot may have not turned somewhere or gone in the wrong direction, which would then let us know the general section of the code to look at for the error.
+
+2. Rosbag wouldn't be too helpful in seeing sensor output or figuring out bugs in the code, but it is good for recreating a robot run for visual purposes. Also, in case of a hardware failure such as a sensor not working there would be no way to know without further debugging.
+
+3. Upon changing the base_frame from odom to base_link and base_laser_link, the location and orientation of the robot shifts slightly, which makes sense because the reference frames are all based in different coordinate systems, meaning that the sensor outputs appear in different places in each frame. Essentially, the fixed frame will follow whichever reference is selected. 
+
+4. When listener.py is run, the statement "world" + time from the talker.py is printed every 10s until the node is stopped. The time is not the exact time but the next time after the last time sent. It is safe to make the assumption that the sensor data being received from a callback could have a slight delay, which could be suboptimal in terms of troubleshooting or viewing what the robot is seeing in real-time.
+
+5. After adding a queue size, the times are now ten seconds apart, meaning the listener is receiving the correct and actual time. This is good for getting the latest data, especially for troubleshooting, but may not be good if the sensor arbitrarily does something in between those ten second delays - there is no way to see that data. 

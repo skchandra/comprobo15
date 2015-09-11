@@ -1,0 +1,8 @@
+prefix=/home/kiki/comprobo15/install
+
+Name: getting_familiar
+Description: Description of getting_familiar
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kiki/comprobo15/install/lib 
+Requires: 
