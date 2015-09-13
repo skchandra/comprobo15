@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""Program to wall follow a wall on the right side of the robot
+Shivali Chandra
+9/13/15"""
+
 import rospy
 from geometry_msgs.msg import Vector3, Twist
 from sensor_msgs.msg import LaserScan
@@ -15,11 +19,11 @@ class WallFollow(object):
 		self.scan315 = msg.ranges[315]
 		self.scanRight = msg.ranges[270]	
 		print self.scan315, self.scanRight
-		if self.scan315 > 0.8 and self.scanRight > .5:
+		if self.scan315 > 0.8 and self.scanRight > .5: #if too far away move fwd until you find a wall
 			self.state = 0
-		if self.scan315 > 0.8:
+		if self.scan315 > 0.8: #if turning away from wall
 			self.state = 1
-		if self.scan315 < 0.73:
+		if self.scan315 < 0.73: #if too close to wall
 			self.state = 2
 
 
