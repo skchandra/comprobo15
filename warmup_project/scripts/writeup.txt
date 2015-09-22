@@ -1,0 +1,25 @@
+Shivali - Warmup Project Questions
+
+1. Which behaviors did you implement?
+	- Wall following - go forward until a wall is found on right side, and follow it
+	- Object avoidance - scan 360 degrees around robot and move away from areas with closest obstacles
+	- Person following - scan front 60 degrees and continuously search for moving target to follow
+	- Finite state controller - obstacle avoid unless specific scan ranges are found; then wall follow until state changes
+
+2. For each behavior, what strategy did you use to implement the behavior? 
+	For each of the programs, I used proportional control to alter the speed, direction, and angle the robot went in in an efficient manner. Wall following only used one sensor, while the other programs used multiple (person following only needed the front few in order to follow someone, while obstacle avoidance used all).
+
+3. For the finite state controller, what were the states?  What did the robot do in each state?  How did you combine and how did you detect when to transition between behaviors?
+	The two states I used were wall follow and obstacle avoid. In wall follow, the robot would follow the wall until an obstacle or wall in front was detected, at which point it would switch to obstacle avoidance. When the scan detected a specific configuration, the robot would switch back to wall following. 
+
+4. How did you structure your code?
+	The code was mainly structured into the initialization function, the run function to keep the program running, and the scan process function which both processed the scan data and sent the appropriate commands for the robot to move. 
+
+5. What if any challenges did you face along the way?
+	It was challenging at first to figure out how to incorporate proportional control, but once that was figured out it was easy to make the code more simple. It was also difficult to understand how to follow a person, but in the end I ended up using a strategy that was similar to object avoidance, but performed the opposite actions.
+
+6. What would you do to improve your project if you had more time?
+	I would put in more of the "going beyond" tasks in, especially with regards to wall following. Additionally I would work on understanding and using odometry.
+
+7. Did you learn any interesting lessons for future robotic programming projects?
+	After writing the initial few programs for this class, it seems that many of them can be combined in more advanced finite state controllers to perform more complex actions, so I would definitely keep that in mind for next time in order to avoid rewriting code. 
