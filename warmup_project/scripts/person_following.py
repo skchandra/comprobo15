@@ -21,12 +21,15 @@ class PersonFollow(object):
 		rightScan = msg.ranges[330:360] #right side
 		rightFound = [i for i in rightScan if i < 1 and i != 0.0]
 		allScan = leftFound+rightFound
+		
 		if (len(allScan) == 0): #if nothing found in field of vision just go straight
 			avgDist = 1.2
 		else:
 			avgDist = sum(allScan)/len(allScan)
+		
 		ang = (len(leftFound) - len(rightFound)) * .08 #proportional control for turning
 		dist = (avgDist - 1) * .75 #proportional control for moving fwd
+		
 		print ang, dist
 		self.pub.publish(Twist(linear=Vector3(x=dist), angular=Vector3(z=ang)))
 	

@@ -13,18 +13,18 @@ class StateController(object):
 		rospy.init_node("state_controller_node")
 		self.pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
 		rospy.Subscriber("/scan", LaserScan, self.processScan) 
-		self.state = 0
+		self.state = 0 #to see which behavior robot is doing in terminal
 
 	def processScan(self, msg):
 		print self.state
 		self.scan315 = msg.ranges[315]
 		print self.scan315, msg.ranges[0]
 		#if self.state == 0:
-		if self.scan315 < 0.7 and msg.ranges[0] > 0.5:
+		if self.scan315 < 0.7 and msg.ranges[0] > 0.5: #if certain scan within range, wall follow
 			self.state = 0
 			ang = -.8*(self.scan315-0.6) #proportional control of direction to turn if needed
 			self.pub.publish(Twist(linear=Vector3(x=.05), angular=Vector3(z=ang))) #publish msg to move
-		else: 
+		else: #otherwise avoid obstacles
 			self.state = 1
 			scan = dict()
 			for i in range(0, 360):
