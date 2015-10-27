@@ -30,8 +30,8 @@ while True:
     gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
 
     # compute flow
-    #flow = cv2.calcOpticalFlowFarneback(prev_gray,gray,None,0.5,3,15,3,5,1.2,0)
-    flow = cv2.calcOpticalFlowFarneback(prev_gray,gray,0.5, 1, 3, 15, 3, 5, 1)
+    flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, 0.5, 3, 12, 3, 5, 1.2, 0)
+    #flow = cv2.calcOpticalFlowFarneback(prev_gray,gray,0.5, 1, 3, 15, 3, 5, 1)
     prev_gray = gray
 
     # plot the flow vectors
